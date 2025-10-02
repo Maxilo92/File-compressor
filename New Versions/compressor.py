@@ -46,11 +46,11 @@ def compress(bits):
     return compressed
 
 if __name__ == "__main__": 
-    bits = readFile("original.txt")
+    bits = readFile("New Versions/original.txt")
     compressed = compress(bits)
 
     # print(bits)
     # print(compressed)
     print(f"Die Komprimierte Datei ist {(1 - len(compressed) / len(bits)) * 100:.3f}% kleiner als vorher")
 
-    writeFile("compressed.txt",compressed)
+    writeFile("New Versions/compressed.txt",compressed)

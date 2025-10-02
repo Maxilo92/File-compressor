@@ -13,10 +13,10 @@ def encode(compressed):
     return clear
 
 if __name__ == "__main__":   
-    compressed = readFile("compressed.txt")
+    compressed = readFile("New Versions/compressed.txt")
     clear = encode(compressed)
 
     # print(compressed)
     # print(clear)
     # print(clear == readFile("original.txt"))
-    print(f"Die Datei wurde{"" if clear == readFile("original.txt") else "nicht"} Erfolgreich encodet")
+    print(f"Die Datei wurde{"" if clear == readFile("New Versions/original.txt") else "nicht"} Erfolgreich encodet")

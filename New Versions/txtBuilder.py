@@ -40,7 +40,7 @@ def binGen(bit: int, ver: int):
     return code
 
 def writeFile(filename: str, payload: str):
-    with open("original.txt", "w") as f:
+    with open(filename, "w") as f:
         f.write(payload)
 
 def durchschnitt_folgenlaenge(s: str) -> float:
@@ -103,11 +103,11 @@ def getInfo(filename: str):
 
 if __name__ == "__main__":
 
-    bits = 20
+    bits = 12
 
     if input("good file? (y/n): ") == "y":
-        writeFile("original.txt",binGen(bits,1))
+        writeFile("New Versions/original.txt",binGen(bits,1))
     else:
-        writeFile("original.txt",binGen(bits,2))
+        writeFile("New Versions/original.txt",binGen(bits,2))
     
-    getInfo("original.txt")
+    getInfo("New Versions/original.txt")
