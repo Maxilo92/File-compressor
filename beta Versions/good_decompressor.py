@@ -8,7 +8,7 @@ def loadOriginal():
     
 smallCode = loadBits()
 
-print(f"{int(len(smallCode) / 9)} Chunks gefunden")
+print(f"{int(len(smallCode) / 2)} Chunks gefunden")
 
 chunks = []
 

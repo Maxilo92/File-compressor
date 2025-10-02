@@ -6,11 +6,11 @@ def readFile(filename: str):
     with open(filename, "r") as f:
             return f.read()
 
-def getBit(last,ver: int):
+def getBit(last,ver: int,bit):
     if ver == 1:
         if 'magicGlitter' not in globals():
             global magicGlitter
-            magicGlitter = int(input("How good? (2-10): ")) -1
+            magicGlitter = int(input(f"How good? (2-{int(2 ** bit) // 100}): ")) -1
         bit = randint(0,magicGlitter)
     else:
         bit = randint(0,2)
@@ -31,7 +31,7 @@ def binGen(bit: int, ver: int):
 
     for i in range((2 ** bit)-1):
        if True: # true gut, false schlecht
-        code += str(getBit(code[len(code)-1],ver))
+        code += str(getBit(code[len(code)-1],ver,bit))
        else:
         code += str(randint(0,1))
        if (2 ** bit)-1 > 100000 and i % randint(100000,999999)  == 0:
@@ -95,11 +95,15 @@ def getInfo(filename: str):
         print(f"{wechsel_zaehlen(code)} wechsel bei {var0 + var1} Zeichen (weniger gleich besser)") 
         print(f"wechsel alle {(var0 + var1) / wechsel_zaehlen(code):.3f} Zeichen (mehr gleich besser)") 
         print(F"durschnittlich {durchschnitt_folgenlaenge(code):.3f} Zeichen pro Folge (mehr gleich besser)") 
+        if (var0 + var1) / wechsel_zaehlen(code) != durchschnitt_folgenlaenge(code):
+            print(f"{(var0 + var1) / wechsel_zaehlen(code):.3f} != {durchschnitt_folgenlaenge(code):.3f} why?")
+        else:
+            print(f"{(var0 + var1) / wechsel_zaehlen(code):.3f} == {durchschnitt_folgenlaenge(code):.3f} why?")
     print("---")
 
 if __name__ == "__main__":
 
-    bits = 16
+    bits = 20
 
     if input("good file? (y/n): ") == "y":
         writeFile("original.txt",binGen(bits,1))
