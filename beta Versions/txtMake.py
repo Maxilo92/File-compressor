@@ -53,7 +53,7 @@ def writeFile(payload: str):
         else:
             print("Fertig!")
 
-bit = 8
+bit = 12
 
 calibrate(bit)
 
