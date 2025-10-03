@@ -7,5 +7,5 @@ I choosed `Run-Length Encoding` because it seemed the easiest.
 
 ## ToDo's
 - [x] Make it work
-- [ ] Refactor program in C (for more speed and maybe even realtime de- and encoding)
+- [ ] Build parts of the program in C (for more speed and maybe even realtime de- and encoding)
 
