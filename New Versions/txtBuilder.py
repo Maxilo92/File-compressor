@@ -11,6 +11,7 @@ def getBit(last,ver: int,bit):
         if 'magicGlitter' not in globals():
             global magicGlitter
             magicGlitter = int(input(f"How good? (2-{int(2 ** bit) // 100}): ")) -1
+            print("0.00%")
         bit = randint(0,magicGlitter)
     else:
         bit = randint(0,2)
@@ -25,16 +26,15 @@ def getBit(last,ver: int,bit):
         else:
             return "0" if ver == 1 else "1"
         
-def binGen(bit: int, ver: int):
+def bitGen(bit: int, ver: int):
     code = "1"
-
     for i in range((2 ** bit)-1):
        if True: # true gut, false schlecht
-        code += str(getBit(code[len(code)-1],ver,bit))
+            code += str(getBit(code[len(code)-1],ver,bit))
        else:
-        code += str(randint(0,1))
-       if (2 ** bit)-1 > 100000 and i % randint(100000,999999)  == 0:
-           print(i)
+            code += str(randint(0,1))
+       if (2 ** bit)-1 > 100000 and i % randint(100000,999999) == 0 and i != 0:
+            print(f"{i / 2 ** bit * 100:.2f}%")
 
     return code
 
@@ -83,6 +83,7 @@ def getInfo(filename: str):
         elif i == "1":
             var1 += 1
 
+    print("sammle Infos...")
     variation = wechsel_zaehlen(code)
     averageLenght = durchschnitt_folgenlaenge(code)
 
@@ -101,17 +102,17 @@ def getInfo(filename: str):
             print(f"{(var0 + var1) / variation:.3f} != {averageLenght:.3f} why?")
         else:
             print(f"{(var0 + var1) / variation:.3f} == {averageLenght:.3f} why?")
-    print("---")
 
 if __name__ == "__main__":
 
-    bits = 12
+    bits = 24
 
     print(f"{bits} Bit sind {2 ** bits} Stellen")
 
     if input("good file? (y/n): ") == "y":
-        writeFile("New Versions/original.txt",binGen(bits,1))
+        writeFile("New Versions/original.txt",bitGen(bits,1))
     else:
-        writeFile("New Versions/original.txt",binGen(bits,2))
-    
+        print("0.00%")
+        writeFile("New Versions/original.txt",bitGen(bits,2))
+    print("100.00%")
     getInfo("New Versions/original.txt")
