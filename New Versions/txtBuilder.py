@@ -26,7 +26,6 @@ def getBit(last,ver: int,bit):
             return "0" if ver == 1 else "1"
         
 def binGen(bit: int, ver: int):
-    print(f"{bit} Bit sind {2 ** bit} Stellen")
     code = "1"
 
     for i in range((2 ** bit)-1):
@@ -84,6 +83,9 @@ def getInfo(filename: str):
         elif i == "1":
             var1 += 1
 
+    variation = wechsel_zaehlen(code)
+    averageLenght = durchschnitt_folgenlaenge(code)
+
     print("---")
     print(f"0: {var0}")
     print(f"1: {var1}")
@@ -93,17 +95,19 @@ def getInfo(filename: str):
     if wechsel_zaehlen(code) != 0:
         print("")
         print(f"{wechsel_zaehlen(code)} wechsel bei {var0 + var1} Zeichen (weniger gleich besser)") 
-        print(f"wechsel alle {(var0 + var1) / wechsel_zaehlen(code):.3f} Zeichen (mehr gleich besser)") 
-        print(F"durschnittlich {durchschnitt_folgenlaenge(code):.3f} Zeichen pro Folge (mehr gleich besser)") 
-        if (var0 + var1) / wechsel_zaehlen(code) != durchschnitt_folgenlaenge(code):
-            print(f"{(var0 + var1) / wechsel_zaehlen(code):.3f} != {durchschnitt_folgenlaenge(code):.3f} why?")
+        print(f"wechsel alle {(var0 + var1) / variation:.3f} Zeichen (mehr gleich besser)") 
+        print(F"durschnittlich {averageLenght:.3f} Zeichen pro Folge (mehr gleich besser)") 
+        if (var0 + var1) / variation != averageLenght:
+            print(f"{(var0 + var1) / variation:.3f} != {averageLenght:.3f} why?")
         else:
-            print(f"{(var0 + var1) / wechsel_zaehlen(code):.3f} == {durchschnitt_folgenlaenge(code):.3f} why?")
+            print(f"{(var0 + var1) / variation:.3f} == {averageLenght:.3f} why?")
     print("---")
 
 if __name__ == "__main__":
 
     bits = 12
+
+    print(f"{bits} Bit sind {2 ** bits} Stellen")
 
     if input("good file? (y/n): ") == "y":
         writeFile("New Versions/original.txt",binGen(bits,1))
